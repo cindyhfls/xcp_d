@@ -27,8 +27,8 @@ from xcp_d.utils.filemanip import ensure_list
 LOGGER = logging.getLogger("nipype.utils")
 
 
-def convert_hcp2bids(in_dir, out_dir, participant_ids=None):
-    """Convert HCP derivatives to BIDS-compliant derivatives.
+def convert_hcpd2bids(in_dir, out_dir, participant_ids=None):
+    """Convert HCP-D derivatives to BIDS-compliant derivatives.
 
     Parameters
     ----------
@@ -109,8 +109,8 @@ def convert_hcp2bids(in_dir, out_dir, participant_ids=None):
     return participant_ids
 
 
-def convert_hcp_to_bids_single_subject(in_dir, out_dir, sub_ent):
-    """Convert HCP derivatives to BIDS-compliant derivatives for a single subject.
+def convert_hcpd_to_bids_single_subject(in_dir, out_dir, sub_ent):
+    """Convert HCP-D derivatives to BIDS-compliant derivatives for a single subject.
 
     Parameters
     ----------
