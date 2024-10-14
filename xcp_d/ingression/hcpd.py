@@ -233,9 +233,14 @@ def convert_hcpd_to_bids_single_subject(in_dir, out_dir, sub_ent):
 
     # Collect functional files to copy
     task_dirs_orig = sorted(glob.glob(os.path.join(func_dir_orig, "*")))
-    task_names = [
-        os.path.basename(f) for f in task_dirs_orig if f.endswith("RL") or f.endswith("LR")
-    ]
+    # Filter directories that end with "PA" or "AP" and contain files matching the pattern rfMRI_Rest*
+    task_names = []
+    for task_dir in task_dirs_orig:
+        if task_dir.endswith("PA") or task_dir.endswith("AP"):
+            # Check if the directory contains files matching the pattern rfMRI_Rest*
+            if glob.glob(os.path.join(task_dir, 'rfMRI_Rest*')):
+                # If it contains such files, add it to the task_names list
+                task_names.append(os.path.basename(task_dir))
 
     for base_task_name in task_names:
         LOGGER.info(f"Processing {base_task_name}")
