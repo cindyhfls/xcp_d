@@ -193,10 +193,14 @@ def convert_hcpd_to_bids_single_subject(in_dir, out_dir, sub_ent):
     os.makedirs(work_dir, exist_ok=True)
 
     # Get masks to be used to extract confounds
-    make_masks(segmentation,os.path.join(anat_dir_bids,f"wm_2mm_{sub_id}_mask_eroded.nii.gz"),os.path.join(anat_dir_bids,f"vent_2mm_{sub_id}_mask_eroded.nii.gz"),fmri_res=2,roi_res=2)
-    # Get masks to be used to extract confounds
-    csf_mask = str(load_data(os.path.join(anat_dir_bids,f"vent_2mm_{sub_id}_mask_eroded.nii.gz")))
-    wm_mask = str(load_data(os.path.join(anat_dir_bids,f"wm_2mm_{sub_id}_mask_eroded.nii.gz")))
+    csf_mask = str(load_data(f"masks/{volspace_ent}_{RES_ENT}_label-CSF_mask.nii.gz"))
+    wm_mask = str(load_data(f"masks/{volspace_ent}_{RES_ENT}_label-WM_mask.nii.gz"))
+    
+    # # Get masks to be used to extract confounds
+    # make_masks(segmentation,os.path.join(anat_dir_bids,f"wm_2mm_{sub_id}_mask_eroded.nii.gz"),os.path.join(anat_dir_bids,f"vent_2mm_{sub_id}_mask_eroded.nii.gz"),fmri_res=2,roi_res=2)
+    # # Get masks to be used to extract confounds
+    # csf_mask = str(load_data(os.path.join(anat_dir_bids,f"vent_2mm_{sub_id}_mask_eroded.nii.gz")))
+    # wm_mask = str(load_data(os.path.join(anat_dir_bids,f"wm_2mm_{sub_id}_mask_eroded.nii.gz")))
 
     # A dictionary of mappings from HCP derivatives to fMRIPrep derivatives.
     # Values will be lists, to allow one-to-many mappings.
